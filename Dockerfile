@@ -12,4 +12,5 @@ RUN go get github.com/tools/godep \
 	&& go get github.com/beego/bee \
 	&& godep restore
 
-CMD go run main.go
+#CMD go run main.go
+CMD bee run
