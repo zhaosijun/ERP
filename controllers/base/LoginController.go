@@ -1,6 +1,7 @@
 package base
 
 import md "goERP/models"
+import "goERP/utils"
 
 // LoginController login controller
 type LoginController struct {
@@ -30,7 +31,10 @@ func (ctl *LoginController) Post() {
 	password := ctl.GetString("password")
 	rememberMe := ctl.GetString("remember")
 
+	utils.LogOut("info", "test11"+loginName+ password + remember)
+
 	if loginName == "" && password == "" {
+		utils.LogOut("info", "test12"+loginName+ password + remember)
 		ctl.Redirect("/login/in", 302)
 	}
 
@@ -41,8 +45,10 @@ func (ctl *LoginController) Post() {
 		ok     bool
 	)
 	if user, ok, err = md.CheckUserByName(loginName, password); ok != true {
+		utils.LogOut("info", "test13"+loginName+ password + remember)
 		ctl.Redirect("/login/in", 302)
 	} else {
+		utils.LogOut("info", "使用数据库为:"+dbType)
 		if record, err = md.GetLastRecordByUserID(user.ID); err == nil {
 
 			ctl.SetSession("LastLogin", record.CreateDate)

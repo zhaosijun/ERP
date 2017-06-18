@@ -31,7 +31,8 @@ func init() {
 	dbPwd := beego.AppConfig.String(dbType + "::db_pwd")
 	dbPort := beego.AppConfig.String(dbType + "::db_port")
 	dbHost := beego.AppConfig.String(dbType + "::db_host")
-	orm.RegisterDriver(dbType, orm.DRPostgres)
+	//orm.RegisterDriver(dbType, orm.DRPostgres) 
+	orm.RegisterDriver(dbType, orm.DRMySQL)
 	switch dbType {
 	//数据库类型和数据库驱动名一致
 	case "postgres":
@@ -41,7 +42,7 @@ func init() {
 		orm.RegisterDataBase(dbAlias, dbType, dataSource)
 
 	case "mysql":
-		dbCharset := beego.AppConfig.String(dbType + "db_charset")
+		dbCharset := beego.AppConfig.String(dbType + "::db_charset")
 		dataSource := dbUser + ":" + dbPwd + "@" + "tcp(" + dbHost + ":" + dbPort + ")" + "/" + dbName + "?charset=" + dbCharset
 		orm.RegisterDataBase(dbAlias, dbType, dataSource)
 	case "sqlite3":
