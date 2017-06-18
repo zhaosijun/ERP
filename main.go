@@ -42,7 +42,7 @@ func init() {
 
 	case "mysql":
 		dbCharset := beego.AppConfig.String(dbType + "db_charset")
-		dataSource := dbUser + ":" + dbPwd + "@" + "tcp(" dbHost + ":" + dbPort + ")" + "/" + dbName + "?charset=" + dbCharset
+		dataSource := dbUser + ":" + dbPwd + "@" + "tcp(" + dbHost + ":" + dbPort + ")" + "/" + dbName + "?charset=" + dbCharset
 		orm.RegisterDataBase(dbAlias, dbType, dataSource)
 	case "sqlite3":
 		orm.RegisterDataBase(dbAlias, "sqlite3", dbName)
