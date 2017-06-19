@@ -31,10 +31,8 @@ func (ctl *LoginController) Post() {
 	password := ctl.GetString("password")
 	rememberMe := ctl.GetString("remember")
 
-	utils.LogOut("info", "test11"+loginName+ password + remember)
-
 	if loginName == "" && password == "" {
-		utils.LogOut("info", "test12"+loginName+ password + remember)
+		utils.LogOut("info", "test12"+loginName+ password + rememberMe)
 		ctl.Redirect("/login/in", 302)
 	}
 
@@ -45,10 +43,10 @@ func (ctl *LoginController) Post() {
 		ok     bool
 	)
 	if user, ok, err = md.CheckUserByName(loginName, password); ok != true {
-		utils.LogOut("info", "test13"+loginName+ password + remember)
+		utils.LogOut("info", "test13"+loginName+ password + rememberMe)
 		ctl.Redirect("/login/in", 302)
 	} else {
-		utils.LogOut("info", "使用数据库为:"+dbType)
+		utils.LogOut("info", "test14"+loginName+ password + rememberMe)
 		if record, err = md.GetLastRecordByUserID(user.ID); err == nil {
 
 			ctl.SetSession("LastLogin", record.CreateDate)
