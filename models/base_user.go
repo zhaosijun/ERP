@@ -61,7 +61,7 @@ func AddUser(obj *User, addUser *User) (id int64, err error) {
 	errBegin := o.Begin()
 	defer func() {
 		if err != nil {
-			utils.LogOut("info", "test33: ", err)
+			utils.LogOut("info", "test33: "+err)
 			if errRollback := o.Rollback(); errRollback != nil {
 				err = errRollback
 			}
