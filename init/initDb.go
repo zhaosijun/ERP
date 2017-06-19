@@ -21,10 +21,11 @@ func InitDb() {
 	}
 	if xmDir, err := os.Getwd(); err == nil {
 		if _, err := md.GetUserByID(1); err != nil {
-
+			utils.LogOut("info", "test21")
 			xmDir += split + "init_xml" + split
 			initUser(xmDir + "Users.xml")
 			if user, err := md.GetUserByID(1); err == nil {
+				utils.LogOut("info", "test22")
 				initCountry(xmDir+"Countries.xml", user)
 				initProvince(xmDir+"Provinces.xml", user)
 				initCity(xmDir+"Cities.xml", user)
@@ -58,6 +59,7 @@ func initUser(filename string) {
 			if xml.Unmarshal(data, &initUsers) == nil {
 				for _, k := range initUsers.Users {
 					//admin系统管理员
+					utils.LogOut("info", "test23")
 					md.AddUser(&k, &user)
 				}
 			}
