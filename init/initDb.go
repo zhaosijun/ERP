@@ -60,7 +60,7 @@ func initUser(filename string) {
 			if xml.Unmarshal(data, &initUsers) == nil {
 				for _, k := range initUsers.Users {
 					//admin系统管理员
-					utils.LogOut("info", "test23: "+initUsers)
+					utils.LogOut("info", "test23: "+string(data))
 					md.AddUser(&k, &user)
 				}
 			}
