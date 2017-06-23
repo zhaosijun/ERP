@@ -66,6 +66,11 @@ func init() {
 
 }
 func main() {
+	if beego.BConfig.RunMode == "dev" {
+		beego.BConfig.WebConfig.DirectoryIndex = true
+		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+	}
+	
 	utils.LogOut("info", "start server")
 	beego.Run()
 }
